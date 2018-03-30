@@ -17,12 +17,9 @@
 .App-intro {
   font-size: large;
 }
-
-/* .main-climbing {
-  display: inline-flex;
-  flex: wrap;
+.main-body {
+  display: flex;
+  align-items: stretch;
 }
 
-.bouldering {
 
-} */

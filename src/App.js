@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
-import AddGear from './Components/AddGear';
 
 class App extends Component {
     constructor() {
@@ -37,6 +36,15 @@ class App extends Component {
     this.createPost(body)
 
   }
+  // function for Adding Item to Packed List
+  handleAddPacked() {
+
+  }
+
+  // function for Removing Item from Original List
+  handleRemove() {
+    
+  }
 
   createPost(body) {
     axios.post(`${this.state.baseURL}/gear`, body).then(res => { 
@@ -62,10 +70,13 @@ class App extends Component {
   render() {
     let sportGearArray = this.state.sportGear.map((element, index) => {
       return (
-        <div key={element.id}>
+        <div key={element.id} className="main-body">
         {/* checkbox goes here */}
+        <button onClick={this.handleAddPacked}>Add to Packed</button>
+          {/* This is where my Object Array List is shown on site */}
           <h1>{element.text}</h1>
         {/* delete button goes here */}
+        <button onClick={this.handleRemove}>Remove from List</button>
         </div>
       )
     })
