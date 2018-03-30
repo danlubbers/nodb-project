@@ -17,11 +17,11 @@ app.use( bodyParser.json() );
 // Create variable for API
 const gearBaseURL = '/api/gear';
 
+// Create our Endpoint
 app.get(gearBaseURL, gearController.read);
 
 app.post(gearBaseURL, gearController.create);
 
-// Create our Endpoint
 app.put(`${gearBaseURL}/:id`, gearController.update);
 
 app.delete(`${gearBaseURL}/:id`, gearController.delete);
