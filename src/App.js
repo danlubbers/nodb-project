@@ -10,7 +10,7 @@ class App extends Component {
 
       this.state = {
         sportGear: [],
-        boulderingGear: [],
+        packedGear: [],
         baseURL: '/api',
         moreGear: ''
       }
@@ -72,7 +72,7 @@ class App extends Component {
 
   deletePost(id) {
     axios.delete(`${this.state.baseURL}/gear?id=${id}`,).then(res => {
-      this.setState({ sportGear: res.data}, console.log('Delete Gear'))
+      this.setState({ sportGear: res.data }, console.log('Delete Gear'))
     });
   }
 
@@ -98,8 +98,8 @@ class App extends Component {
           <h1 className="App-title">Sport Climbing Gear List</h1>
         </header> 
         <section className="Container">
-          <div className="gearList">    
-          <h1 className="list">Gear List</h1>   
+          <div className="gearListContainer">    
+          <h1 className="gearlist">Gear List</h1>   
             <div>{sportGearArray}</div> 
               <div className="gearInput">
               <input value={this.state.moreGear} placeholder="Add new piece of gear" onChange={(e)=>this.handleInputChange(e.target.value)} type="text"/>
@@ -107,10 +107,11 @@ class App extends Component {
               </div>
           </div>
 
-          <div className="packedList">
-            <h1 className="list">Packed List</h1>
+          <div className="packedListContainer">
+            <h1 className="packedList">Packed Gear List</h1>
           </div> 
           </section>
+          <footer><h5>Site made by: Dan Lubbers, Now go Climb!</h5></footer>
       </div>
     );
   }

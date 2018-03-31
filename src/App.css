@@ -51,14 +51,40 @@ h1 {
   align-items: center;
 }
 
-.list {
-  text-align: center;
-}
-.gearList {
+.gearListContainer {
   float: left;
 }
 
-.packedList {
-  float: right;
+/* was suppose to be a line spit */
+/* .gearListContainer:after {
+  content: " ";
+  background-color: #000;
+  position: absolute;
+  width: 2px;
+  height: 100px;
+  top: 10px;
+  left: 50%;
+  display: block;
+} */
+
+.gearlist {
+  text-align: center;
+  text-decoration-line: underline;
 }
 
+.packedListContainer {
+  float: center;
+}
+.packedList {
+  text-align: center;
+  margin: 10px;
+  text-decoration-line: underline;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  text-align: center;
+}
