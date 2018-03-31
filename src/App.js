@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 
+
+
 class App extends Component {
     constructor() {
       super();
@@ -15,11 +17,13 @@ class App extends Component {
 
       this.handleInputChange = this.handleInputChange.bind(this);
       this.handleAddTask = this.handleAddTask.bind(this);
+      this.handleAddPacked = this.handleAddPacked.bind(this);
+      this.handleRemove = this.handleRemove.bind(this);
     }
 
   componentDidMount() {
     axios.get(`${this.state.baseURL}/gear`).then(res => { 
-      this.setState({ sportGear: res.data[0] }, console.log('Get Gear'));     
+      this.setState({ sportGear: res.data[0] });     
     });
   }
 
@@ -31,7 +35,7 @@ class App extends Component {
   // function for button
   handleAddTask() {
     let body = {
-      newItem : {text : this.state.moreGear}
+      newItem : {text: this.state.moreGear}
     }
     this.createPost(body)
 
@@ -43,7 +47,12 @@ class App extends Component {
 
   // function for Removing Item from Original List
   handleRemove() {
-    
+    console.log('REMOVED')
+    let id = {
+      removeItem: {id: this.state.moreGear}
+    }
+
+    this.deletePost(id)
   }
 
   createPost(body) {
@@ -71,12 +80,12 @@ class App extends Component {
     let sportGearArray = this.state.sportGear.map((element, index) => {
       return (
         <div key={element.id} className="main-body">
-        {/* checkbox goes here */}
-        <button onClick={this.handleAddPacked}>Add to Packed</button>
+        {/* Add Packed Button goes here */}
+        <button className="addPackedButton"onClick={this.handleAddPacked}>Add to Packed</button>
           {/* This is where my Object Array List is shown on site */}
           <h1>{element.text}</h1>
         {/* delete button goes here */}
-        <button onClick={this.handleRemove}>Remove from List</button>
+        <button className="removeButton"onClick={this.handleRemove}>Remove from List</button>
         </div>
       )
     })
@@ -90,18 +99,20 @@ class App extends Component {
         </header> 
 
         <section >
-          <div className="main-climbing">  
-           
+          <div className="main-climbing"> 
+          <h1>{sportGearArray}</h1> 
           </div>
         </section>
 
         <div>
           
           <div>{sportGearArray}</div> 
-          <input value={this.state.moreGear} placeholder="Add new piece of gear" onChange={(e)=>this.handleInputChange(e.target.value)} type="text"/>
-          <button onClick={this.handleAddTask}>Add to List</button>
-        </div>  
-      </div>
+              <div className="gearInput">
+              <input value={this.state.moreGear} placeholder="Add new piece of gear" onChange={(e)=>this.handleInputChange(e.target.value)} type="text"/>
+              <button className="addListButton" onClick={this.handleAddTask}>Add to List</button>
+              </div>
+           </div>  
+        </div>
     );
   }
 }

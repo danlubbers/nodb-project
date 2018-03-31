@@ -28,6 +28,9 @@ module.exports = {
     },
 
     delete: (req, res) => {
+        const deleteID = req.params.id;
+        sportGearIndex = sportGear.findIndex(sGear => sGear.id === deleteId);
+        sportGear.splice(sportGearIndex, 1);
         res.status(200).send([sportGear]);
     }
 }
