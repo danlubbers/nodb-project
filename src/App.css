@@ -51,3 +51,14 @@ h1 {
   align-items: center;
 }
 
+.list {
+  text-align: center;
+}
+.gearList {
+  float: left;
+}
+
+.packedList {
+  float: right;
+}
+

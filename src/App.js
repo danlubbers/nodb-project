@@ -97,22 +97,21 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Sport Climbing Gear List</h1>
         </header> 
-
-        <section >
-          <div className="main-climbing"> 
-          <h1>{sportGearArray}</h1> 
-          </div>
-        </section>
-
-        <div>
-          
-          <div>{sportGearArray}</div> 
+        <section className="Container">
+          <div className="gearList">    
+          <h1 className="list">Gear List</h1>   
+            <div>{sportGearArray}</div> 
               <div className="gearInput">
               <input value={this.state.moreGear} placeholder="Add new piece of gear" onChange={(e)=>this.handleInputChange(e.target.value)} type="text"/>
               <button className="addListButton" onClick={this.handleAddTask}>Add to List</button>
               </div>
-           </div>  
-        </div>
+          </div>
+
+          <div className="packedList">
+            <h1 className="list">Packed List</h1>
+          </div> 
+          </section>
+      </div>
     );
   }
 }
