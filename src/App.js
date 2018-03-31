@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 
-
-
 class App extends Component {
     constructor() {
       super();
@@ -12,17 +10,18 @@ class App extends Component {
         sportGear: [],
         packedGear: [],
         baseURL: '/api',
-        moreGear: ''
+        moreGear: '',
       }
 
       this.handleInputChange = this.handleInputChange.bind(this);
       this.handleAddTask = this.handleAddTask.bind(this);
       this.handleAddPacked = this.handleAddPacked.bind(this);
-      this.handleRemove = this.handleRemove.bind(this);
+      // this.handleRemove = this.handleRemove.bind(this);
     }
 
   componentDidMount() {
     axios.get(`${this.state.baseURL}/gear`).then(res => { 
+      console.log(res)
       this.setState({ sportGear: res.data[0] });     
     });
   }
@@ -35,9 +34,11 @@ class App extends Component {
   // function for button
   handleAddTask() {
     let body = {
-      newItem : {text: this.state.moreGear}
+      newItem : {text: this.state.moreGear},
     }
+    this.setState({moreGear: ''});
     this.createPost(body)
+    
 
   }
   // function for Adding Item to Packed List
@@ -46,32 +47,36 @@ class App extends Component {
   }
 
   // function for Removing Item from Original List
-  handleRemove() {
-    console.log('REMOVED')
-    let id = {
-      removeItem: {id: this.state.moreGear}
-    }
+  // handleRemove(id) {
+  //   console.log('REMOVED')
+  //   console.log(id)
+  //   // let idNum = this.state.sportGear[id]
 
-    this.deletePost(id)
-  }
+
+  //   this.deletePost(id)
+  // }
 
   createPost(body) {
     axios.post(`${this.state.baseURL}/gear`, body).then(res => { 
       console.log(res.data)
       this.setState({ sportGear: res.data })
+      
+
     });
+
   }
 
-  updatePost(id, text) {
-    axios.put(`${this.state.baseURL}/gear?id=${id}`,).then(res => {
-      this.setState({ sportGear: res.data }, console.log('Put Gear'))
-    });
-  }
+  // updatePost(id, text) {
+  //   axios.put(`${this.state.baseURL}/gear?id=${id}`,).then(res => {
+  //     this.setState({ sportGear: res.data }, console.log('Put Gear'))
+  //   });
+  // }
 
   
 
   deletePost(id) {
-    axios.delete(`${this.state.baseURL}/gear?id=${id}`,).then(res => {
+    axios.delete(`${this.state.baseURL}/gear/${id}`).then(res => {
+      console.log(res)
       this.setState({ sportGear: res.data }, console.log('Delete Gear'))
     });
   }
@@ -79,18 +84,16 @@ class App extends Component {
   render() {
     let sportGearArray = this.state.sportGear.map((element, index) => {
       return (
-        <div key={element.id} className="main-body">
+        <div key={index} className="main-body">
         {/* Add Packed Button goes here */}
         <button className="addPackedButton"onClick={this.handleAddPacked}>Add to Packed</button>
           {/* This is where my Object Array List is shown on site */}
           <h1>{element.text}</h1>
         {/* delete button goes here */}
-        <button className="removeButton"onClick={this.handleRemove}>Remove from List</button>
+        <button className="removeButton"onClick={() => this.deletePost(index)}>Remove from List</button>
         </div>
       )
     })
-
-
 
     return (
       <div className="App">
@@ -99,7 +102,7 @@ class App extends Component {
         </header> 
         <section className="Container">
           <div className="gearListContainer">    
-          <h1 className="gearlist">Gear List</h1>   
+          <h1 className="gearlistHeader">Gear List</h1>   
             <div>{sportGearArray}</div> 
               <div className="gearInput">
               <input value={this.state.moreGear} placeholder="Add new piece of gear" onChange={(e)=>this.handleInputChange(e.target.value)} type="text"/>
@@ -108,10 +111,11 @@ class App extends Component {
           </div>
 
           <div className="packedListContainer">
-            <h1 className="packedList">Packed Gear List</h1>
+            <h1 className="packedListHeader">Packed Gear List</h1>
           </div> 
+          <div className="packedList">Dummy content for Added List</div>
           </section>
-          <footer><h5>Site made by: Dan Lubbers, Now go Climb!</h5></footer>
+          <footer><h5>Site made by: Mentors, friends and a little bit of Dan, Now go Climb!</h5></footer>
       </div>
     );
   }

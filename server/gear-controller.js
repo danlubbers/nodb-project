@@ -1,7 +1,13 @@
 let sportGear = [
-        {id: 1, text: 'Climbing Shoes', img: 'https://www.sportiva.com/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/9/7/971_yel_miura_1_7.jpg'},
-        {id: 2, text: 'Chalk Bag', img: 'https://www.sportiva.com/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/3/9/39c_bk_laspochalkbag_black_1.jpg'},
-        {id: 3, text: 'Harness', img: 'https://www.petzl.com/sfc/servlet.shepherd/version/download/068w0000002ELzAAAW'}
+        {id: 1, text: 'Climbing Shoes'
+        // , img: 'https://www.sportiva.com/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/9/7/971_yel_miura_1_7.jpg'
+    },
+        {id: 2, text: 'Chalk Bag'
+        // , img: 'https://www.sportiva.com/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/3/9/39c_bk_laspochalkbag_black_1.jpg'
+    },
+        {id: 3, text: 'Harness'
+        // , img: 'https://www.petzl.com/sfc/servlet.shepherd/version/download/068w0000002ELzAAAW'
+    }
     ];
 
 let id = 4;
@@ -28,9 +34,16 @@ module.exports = {
     },
 
     delete: (req, res) => {
-        const deleteID = req.params.id;
-        sportGearIndex = sportGear.findIndex(sGear => sGear.id === deleteId);
-        sportGear.splice(sportGearIndex, 1);
-        res.status(200).send([sportGear]);
+        console.log('anything')
+        const deleteId = req.params.id;
+
+
+        const filtered = sportGear.filter(item => item.id !== +deleteId)
+        console.log(filtered)
+        
+        // sportGearIndex = sportGear.findIndex(sGear => sGear.id === deleteId);
+        // console.log(sportGearIndex)
+        // sportGear.splice(sportGearIndex, 1);
+        res.status(200).send([filtered]);
     }
 }

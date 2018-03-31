@@ -67,7 +67,7 @@ h1 {
   display: block;
 } */
 
-.gearlist {
+.gearlistHeader {
   text-align: center;
   text-decoration-line: underline;
 }
@@ -75,10 +75,14 @@ h1 {
 .packedListContainer {
   float: center;
 }
-.packedList {
+.packedListHeader {
   text-align: center;
   margin: 10px;
   text-decoration-line: underline;
+}
+
+.packedList {
+  text-align: center;
 }
 
 footer {
