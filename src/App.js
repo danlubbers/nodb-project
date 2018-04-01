@@ -3,6 +3,8 @@ import './App.css';
 import axios from 'axios';
 import Banner from './Components/Banner.js';
 import Footer from './Components/Footer.js';
+import Gear from './Components/Gear.js';
+import AddToList from './Components/AddToList';
 
 class App extends Component {
     constructor() {
@@ -14,55 +16,13 @@ class App extends Component {
         baseURL: '/api',
         moreGear: ''
       }
-
-      this.handleInputChange = this.handleInputChange.bind(this);
-      this.handleAddTask = this.handleAddTask.bind(this);
       this.handleAddPacked = this.handleAddPacked.bind(this);
-      // this.handleRemove = this.handleRemove.bind(this);
     }
 
-  componentDidMount() {
-    axios.get(`${this.state.baseURL}/gear`).then(res => { 
-      console.log(res)
-      this.setState({ sportGear: res.data[0] });     
-    });
-  }
-
-  // function for Input Value
-  handleInputChange(value) {
-    this.setState({ moreGear: value});
-  }
-
-  // function for button
-  handleAddTask() {
-    let body = {
-      newItem : {text: this.state.moreGear},
-    }
-    this.setState({moreGear: ''});
-    this.createPost(body)
-    
-
-  }
+  
   // function for Adding Item to Packed List
   handleAddPacked() {
 
-  }
-
-  // function for Removing Item from Original List
-  // handleRemove(id) {
-  //   console.log('REMOVED')
-  //   console.log(id)
-  //   // let idNum = this.state.sportGear[id]
-
-
-  //   this.deletePost(id)
-  // }
-
-  createPost(body) {
-    axios.post(`${this.state.baseURL}/gear`, body).then(res => { 
-      console.log(res.data)
-      this.setState({ sportGear: res.data })
-    });
   }
 
   updatePost(id, text) {
@@ -71,43 +31,16 @@ class App extends Component {
     });
   }
 
-  
-
-  deletePost(id) {
-    axios.delete(`${this.state.baseURL}/gear/${id}`).then(res => {
-      console.log(res)
-      this.setState({ sportGear: res.data }, console.log('Delete Gear'))
-    });
-  }
-
   render() {
-    let sportGearArray = this.state.sportGear.map((element, index) => {
-      return (
-        <div key={index} className="main-body">
-        {/* Add Packed Button goes here */}
-        <button className="addPackedButton"onClick={this.handleAddPacked}>Add to Packed</button>
-          {/* This is where my Object Array List is shown on site */}
-          <h1>{element.text}</h1>
-        {/* delete button goes here */}
-        <button className="removeButton"onClick={() => this.deletePost(index)}>Remove from List</button>
-        </div>
-      )
-    })
 
     return (
       <div className="App">
       <Banner /> 
-        {/* <header className="App-header">
-          <h1 className="App-title">Sport Climbing Gear List</h1>
-        </header>  */}
         <section className="Container">
           <div className="gearListContainer">    
           <h1 className="gearlistHeader">Gear List</h1>   
-            <div>{sportGearArray}</div> 
-              <div className="gearInput">
-              <input value={this.state.moreGear} placeholder="Add new piece of gear" onChange={(e)=>this.handleInputChange(e.target.value)} type="text"/>
-              <button className="addListButton" onClick={this.handleAddTask}>Add to List</button>
-              </div>
+            <Gear />
+            <AddToList />
           </div>
 
           <div className="packedListContainer">
@@ -116,7 +49,6 @@ class App extends Component {
           <div className="packedList">Dummy content for Added List</div>
           </section>
           <Footer />
-          {/* <footer><h5>Site made by: Dan Lubbers, Now go Climb!</h5></footer> */}
       </div>
     );
   }

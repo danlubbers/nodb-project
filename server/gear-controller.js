@@ -2,10 +2,10 @@ let sportGear = [
     {id: 1, text: 'Climbing Shoes'},
     {id: 2, text: 'Chalk Bag'},
     {id: 3, text: 'Harness'},
-    {id: 4, text: 'rope'},
-    {id: 5, text: 'nalgene'},
-    {id: 6, text: 'caribiner'},
-    {id: 7, text: 'grigri'}
+    {id: 4, text: 'Rope'},
+    {id: 5, text: 'Nalgene'},
+    {id: 6, text: 'Caribiner'},
+    {id: 7, text: 'Grigri'}
 ];
 
 let currentGear = sportGear.slice()
