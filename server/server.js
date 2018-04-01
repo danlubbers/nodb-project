@@ -2,9 +2,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const gearController = require('./gear-controller.js');
-
-
 const app = express();
+
 
 // Top Level Middleware
 app.use( bodyParser.json() );
@@ -29,3 +28,4 @@ app.delete(`${gearBaseURL}/:id`, gearController.delete);
 // App.Listen should be on port 3005
 const port = 3005;
 app.listen( port,  () => {console.log(`I am always listen to you on port ${port}`);});
+

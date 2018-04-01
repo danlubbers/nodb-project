@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 
+
+
 class App extends Component {
     constructor() {
       super();
@@ -10,7 +12,7 @@ class App extends Component {
         sportGear: [],
         packedGear: [],
         baseURL: '/api',
-        moreGear: '',
+        moreGear: ''
       }
 
       this.handleInputChange = this.handleInputChange.bind(this);
@@ -60,17 +62,14 @@ class App extends Component {
     axios.post(`${this.state.baseURL}/gear`, body).then(res => { 
       console.log(res.data)
       this.setState({ sportGear: res.data })
-      
-
     });
-
   }
 
-  // updatePost(id, text) {
-  //   axios.put(`${this.state.baseURL}/gear?id=${id}`,).then(res => {
-  //     this.setState({ sportGear: res.data }, console.log('Put Gear'))
-  //   });
-  // }
+  updatePost(id, text) {
+    axios.put(`${this.state.baseURL}/gear?id=${id}`,).then(res => {
+      this.setState({ sportGear: res.data }, console.log('Put Gear'))
+    });
+  }
 
   
 
@@ -115,7 +114,7 @@ class App extends Component {
           </div> 
           <div className="packedList">Dummy content for Added List</div>
           </section>
-          <footer><h5>Site made by: Mentors, friends and a little bit of Dan, Now go Climb!</h5></footer>
+          <footer><h5>Site made by: Dan Lubbers, Now go Climb!</h5></footer>
       </div>
     );
   }

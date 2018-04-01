@@ -1,21 +1,20 @@
 let sportGear = [
-        {id: 1, text: 'Climbing Shoes'
-        // , img: 'https://www.sportiva.com/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/9/7/971_yel_miura_1_7.jpg'
-    },
-        {id: 2, text: 'Chalk Bag'
-        // , img: 'https://www.sportiva.com/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/3/9/39c_bk_laspochalkbag_black_1.jpg'
-    },
-        {id: 3, text: 'Harness'
-        // , img: 'https://www.petzl.com/sfc/servlet.shepherd/version/download/068w0000002ELzAAAW'
-    }
-    ];
+    {id: 1, text: 'Climbing Shoes'},
+    {id: 2, text: 'Chalk Bag'},
+    {id: 3, text: 'Harness'},
+    {id: 4, text: 'rope'},
+    {id: 5, text: 'nalgene'},
+    {id: 6, text: 'caribiner'},
+    {id: 7, text: 'grigri'}
+];
 
-let id = 4;
-
+let currentGear = sportGear.slice()
+let id = sportGear.length;
+console.log(id);
 
 module.exports = {
     read: (req, res) => {
-        res.status(200).send([sportGear]);
+        res.status(200).send([currentGear]);
         
     },
 
@@ -33,17 +32,15 @@ module.exports = {
         res.status(200).send([sportGear]);
     },
 
+
     delete: (req, res) => {
-        console.log('anything')
-        const deleteId = req.params.id;
-
-
-        const filtered = sportGear.filter(item => item.id !== +deleteId)
-        console.log(filtered)
-        
-        // sportGearIndex = sportGear.findIndex(sGear => sGear.id === deleteId);
-        // console.log(sportGearIndex)
-        // sportGear.splice(sportGearIndex, 1);
-        res.status(200).send([filtered]);
+        const deleteId = ++req.params.id;
+        const filtered = currentGear.filter(item => {
+            console.log( item.id, +deleteId)
+            return item.id !== +deleteId})
+        //↓ Save your new array to the main one. ↓
+        currentGear = filtered
+        //↓ Just send the main array ↓
+        res.status(200).send(currentGear);
+        }
     }
-}
