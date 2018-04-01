@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
-
-
+import Banner from './Components/Banner.js';
+import Footer from './Components/Footer.js';
 
 class App extends Component {
     constructor() {
@@ -96,9 +96,10 @@ class App extends Component {
 
     return (
       <div className="App">
-        <header className="App-header">
+      <Banner /> 
+        {/* <header className="App-header">
           <h1 className="App-title">Sport Climbing Gear List</h1>
-        </header> 
+        </header>  */}
         <section className="Container">
           <div className="gearListContainer">    
           <h1 className="gearlistHeader">Gear List</h1>   
@@ -114,7 +115,8 @@ class App extends Component {
           </div> 
           <div className="packedList">Dummy content for Added List</div>
           </section>
-          <footer><h5>Site made by: Dan Lubbers, Now go Climb!</h5></footer>
+          <Footer />
+          {/* <footer><h5>Site made by: Dan Lubbers, Now go Climb!</h5></footer> */}
       </div>
     );
   }
