@@ -5,6 +5,7 @@ import Banner from './Components/Banner.js';
 import Footer from './Components/Footer.js';
 import Gear from './Components/Gear.js';
 import AddToList from './Components/AddToList.js';
+import Packed from './Components/Packed.js';
 // Tried Weather API - did not work
 // import Weather from './Components/Weather.js';
 
@@ -18,15 +19,9 @@ class App extends Component {
         baseURL: '/api',
         moreGear: ''
       }
-      this.handleAddPacked = this.handleAddPacked.bind(this);
+      
       this.transferState = this.transferState.bind(this)
     }
-
-  
-  // function for Adding Item to Packed List
-  handleAddPacked() {
-
-  }
 
   componentDidMount() {
     axios.get(`${this.state.baseURL}/gear`).then(res => { 
@@ -64,7 +59,7 @@ class App extends Component {
           <div className="packedListContainer">
             <h1 className="packedListHeader">Packed Gear List</h1>
           </div> 
-          <div className="packedList">Dummy content for Added List</div>
+          <Packed />
           {/* For Weather API */}
           {/* <Weather /> */}
           </section>

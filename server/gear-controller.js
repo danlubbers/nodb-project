@@ -8,8 +8,10 @@ let sportGear = [
     {id: 7, text: 'Grigri'}
 ];
 
+let packedGear = [];
+
 let currentGear = sportGear.slice()
-let id = sportGear.length+1;
+let id = sportGear.length++;
 console.log(id);
 
 module.exports = {

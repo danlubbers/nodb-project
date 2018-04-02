@@ -8,18 +8,13 @@ const app = express();
 // Top Level Middleware
 app.use( bodyParser.json() );
 
-// EXAMPLE
-// app.get('/api/stuff', (req, res) => {
-    // res.status(200).send(stuff)
-// })
-
 // Create variable for API
 const gearBaseURL = '/api/gear';
 
 // Create our Endpoint
 app.get(gearBaseURL, gearController.read);
 
-app.post(gearBaseURL, gearController.create);
+app.post(`${gearBaseURL}/:id`, gearController.create);
 
 app.put(`${gearBaseURL}/:id`, gearController.update);
 

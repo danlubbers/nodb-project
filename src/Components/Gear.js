@@ -9,10 +9,17 @@ export default class Gear extends Component {
 
         this.state = {
             sportGear: [],
-            baseURL: './api'
+            baseURL: '/api'
         };
-
+        this.handleAddPacked = this.handleAddPacked.bind(this);
         this.deletePost = this.deletePost.bind(this);
+}
+
+// function for Adding Item to Packed List
+handleAddPacked(id) { 
+        axios.put(`${this.state.baseURL}/gear/${id}`).then(res => { 
+            
+        });
 }
 
     deletePost(id) {
@@ -30,7 +37,7 @@ export default class Gear extends Component {
             return (
               <div key={index} className="main-body">
               {/* Add Packed Button goes here */}
-              <button className="addPackedButton"onClick={this.handleAddPacked}>Add to Packed</button>
+              <button className="addPackedButton" onClick={()=> this.handleAddPacked(element.id)}>Add to Packed</button>
                 {/* This is where my Object Array List is shown on site */}
                 <h1>{element.text}</h1>
               {/* delete button goes here */}

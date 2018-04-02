@@ -1,4 +1,4 @@
-// Functional Component
+// Functional Component for Banner
 
 import React from 'react';
 

@@ -1,4 +1,4 @@
-// Functional Component
+// Functional Component for Footer
 
 import React from 'react';
 
