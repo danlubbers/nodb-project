@@ -5,7 +5,7 @@ import React from 'react';
 export default function Packed(props) {
     let displayList = props.list.map((element, index)=>{
         return (
-            <li key={index}>{element.text}</li>
+            <h2 key={index}>{element.text}</h2>
         )
     })
     return(

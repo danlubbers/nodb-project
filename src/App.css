@@ -32,6 +32,12 @@ h1 {
   margin: auto;
 }
 
+h2 {
+  font-size: 2vh;
+  margin: auto;
+  padding: 5px;
+}
+
 .addPackedButton, .removeButton, addListButton {
   margin: 25px;
   border-radius: 15px;
@@ -81,6 +87,8 @@ h1 {
 
 .packedList {
   text-align: center;
+  margin: auto;
+  padding: 10px;
 }
 
 footer {
