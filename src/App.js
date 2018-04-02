@@ -4,7 +4,9 @@ import axios from 'axios';
 import Banner from './Components/Banner.js';
 import Footer from './Components/Footer.js';
 import Gear from './Components/Gear.js';
-import AddToList from './Components/AddToList';
+import AddToList from './Components/AddToList.js';
+// Tried Weather API - did not work
+// import Weather from './Components/Weather.js';
 
 class App extends Component {
     constructor() {
@@ -17,6 +19,7 @@ class App extends Component {
         moreGear: ''
       }
       this.handleAddPacked = this.handleAddPacked.bind(this);
+      this.transferState = this.transferState.bind(this)
     }
 
   
@@ -25,10 +28,23 @@ class App extends Component {
 
   }
 
+  componentDidMount() {
+    axios.get(`${this.state.baseURL}/gear`).then(res => { 
+    console.log(res.data[0])
+    this.setState({ sportGear: res.data[0] });     
+    });
+}
+
   updatePost(id, text) {
     axios.put(`${this.state.baseURL}/gear?id=${id}`,).then(res => {
       this.setState({ sportGear: res.data }, console.log('Put Gear'))
     });
+  }
+
+  transferState(info){
+    this.setState({
+      sportGear: info
+    })
   }
 
   render() {
@@ -38,15 +54,19 @@ class App extends Component {
       <Banner /> 
         <section className="Container">
           <div className="gearListContainer">    
-          <h1 className="gearlistHeader">Gear List</h1>   
-            <Gear />
-            <AddToList />
+            <h1 className="gearlistHeader">Gear List</h1> 
+
+            <Gear sportGear={this.state.sportGear} transfer=    {this.transferState}/>
+
+            <AddToList transfer={this.transferState}/>
           </div>
 
           <div className="packedListContainer">
             <h1 className="packedListHeader">Packed Gear List</h1>
           </div> 
           <div className="packedList">Dummy content for Added List</div>
+          {/* For Weather API */}
+          {/* <Weather /> */}
           </section>
           <Footer />
       </div>

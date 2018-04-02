@@ -9,11 +9,12 @@ export default class AddToList extends Component {
 
         this.state = {
             sportGear: [],
-            baseUrl: '/api',
+            baseURL: '/api',
             moreGear: ''
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleAddTask = this.handleAddTask.bind(this);
+        this.createPost = this.createPost.bind(this);
 }
 
   // function for Input Value
@@ -27,19 +28,18 @@ export default class AddToList extends Component {
       newItem : {text: this.state.moreGear},
     }
     this.setState({moreGear: ''});
-    this.createPost(body)
+    this.createPost(body);
   }
 
   createPost(body) {
-    console.log('TEST-1');
     axios.post(`${this.state.baseURL}/gear`, body).then(res => { 
-      this.setState({ sportGear: res.data })
-      console.log('TEST-2');
+      // this.setState({ sportGear: res.data })
+      this.props.transfer(res.data);
     });
   }
 
 render() {
-   
+  //  console.log(this.state.sportGear, 'on add')
 
     return(
         <div className="gearInput">

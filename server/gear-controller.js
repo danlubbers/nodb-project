@@ -4,12 +4,12 @@ let sportGear = [
     {id: 3, text: 'Harness'},
     {id: 4, text: 'Rope'},
     {id: 5, text: 'Nalgene'},
-    {id: 6, text: 'Caribiner'},
+    {id: 6, text: 'Carabiner'},
     {id: 7, text: 'Grigri'}
 ];
 
 let currentGear = sportGear.slice()
-let id = sportGear.length;
+let id = sportGear.length+1;
 console.log(id);
 
 module.exports = {
@@ -23,18 +23,20 @@ module.exports = {
             id: id,
             text: req.body.newItem.text
         };
-        sportGear.push(newEquip)
-        id++
-        res.status(200).send(sportGear);
+        currentGear.push(newEquip)
+        id++;
+        // console.log('sport gear', sportGear);
+        res.status(200).send(currentGear);
     },
 
     update: (req, res) => {
-        res.status(200).send([sportGear]);
+        res.status(200).send([currentGear]);
     },
 
 
     delete: (req, res) => {
-        const deleteId = ++req.params.id;
+        const deleteId = +req.params.id;
+        // console.log('backendid', deleteId)
         const filtered = currentGear.filter(item => {
             console.log( item.id, +deleteId)
             return item.id !== +deleteId})

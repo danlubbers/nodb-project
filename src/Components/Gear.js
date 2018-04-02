@@ -12,26 +12,21 @@ export default class Gear extends Component {
             baseURL: './api'
         };
 
-        this.componentDidMount = this.componentDidMount.bind(this);
         this.deletePost = this.deletePost.bind(this);
 }
 
-    componentDidMount() {
-        axios.get(`${this.state.baseURL}/gear`).then(res => { 
-        console.log(res)
-        this.setState({ sportGear: res.data[0] });     
-        });
-    }
-
     deletePost(id) {
+        console.log(id, "front end id")
         axios.delete(`${this.state.baseURL}/gear/${id}`).then(res => {
-          console.log(res)
-          this.setState({ sportGear: res.data }, console.log('Delete Gear'))
+        //   console.log(res)
+          this.props.transfer(res.data)
+        //   this.setState({ sportGear: res.data }, console.log('Delete Gear'))
         });
       }
 
+
     render() {
-        let sportGearArray = this.state.sportGear.map((element, index) => {
+        let sportGearArray = this.props.sportGear.map((element, index) => {
             return (
               <div key={index} className="main-body">
               {/* Add Packed Button goes here */}
@@ -39,7 +34,7 @@ export default class Gear extends Component {
                 {/* This is where my Object Array List is shown on site */}
                 <h1>{element.text}</h1>
               {/* delete button goes here */}
-              <button className="removeButton"onClick={() => this.deletePost(index)}>Remove from List</button>
+              <button className="removeButton"onClick={() => this.deletePost(element.id)}>Remove from List</button>
               </div>
             )
           })
