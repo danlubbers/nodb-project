@@ -18,16 +18,13 @@ export default class Gear extends Component {
 // function for Adding Item to Packed List
 handleAddPacked(id) { 
         axios.put(`${this.state.baseURL}/gear/${id}`).then(res => { 
-            
+            this.props.newPackedList(res.data)
         });
 }
 
     deletePost(id) {
-        console.log(id, "front end id")
         axios.delete(`${this.state.baseURL}/gear/${id}`).then(res => {
-        //   console.log(res)
           this.props.transfer(res.data)
-        //   this.setState({ sportGear: res.data }, console.log('Delete Gear'))
         });
       }
 

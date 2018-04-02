@@ -19,7 +19,7 @@ class App extends Component {
         baseURL: '/api',
         moreGear: ''
       }
-      
+      this.newPackedList = this.newPackedList.bind(this)
       this.transferState = this.transferState.bind(this)
     }
 
@@ -29,6 +29,12 @@ class App extends Component {
     this.setState({ sportGear: res.data[0] });     
     });
 }
+
+  newPackedList(list) {
+    this.setState({
+      packedGear: list
+    })
+  }
 
   updatePost(id, text) {
     axios.put(`${this.state.baseURL}/gear?id=${id}`,).then(res => {
@@ -51,7 +57,11 @@ class App extends Component {
           <div className="gearListContainer">    
             <h1 className="gearlistHeader">Gear List</h1> 
 
-            <Gear sportGear={this.state.sportGear} transfer=    {this.transferState}/>
+            <Gear 
+              sportGear={this.state.sportGear} 
+              transfer={this.transferState}
+              newPackedList={this.newPackedList}
+            />
 
             <AddToList transfer={this.transferState}/>
           </div>
@@ -59,7 +69,9 @@ class App extends Component {
           <div className="packedListContainer">
             <h1 className="packedListHeader">Packed Gear List</h1>
           </div> 
-          <Packed />
+          <Packed 
+              list = {this.state.packedGear}
+          />
           {/* For Weather API */}
           {/* <Weather /> */}
           </section>

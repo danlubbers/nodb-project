@@ -2,8 +2,15 @@
 
 import React from 'react';
 
-export default function Packed() {
+export default function Packed(props) {
+    let displayList = props.list.map((element, index)=>{
+        return (
+            <li key={index}>{element.text}</li>
+        )
+    })
     return(
-        <div className="packedList">Dummy content for Added List</div>
+        <div className="packedList">
+        {displayList}
+        </div>
     )
 }

@@ -12,12 +12,11 @@ let packedGear = [];
 
 let currentGear = sportGear.slice()
 let id = sportGear.length++;
-console.log(id);
+
 
 module.exports = {
     read: (req, res) => {
         res.status(200).send([currentGear]);
-        
     },
 
     create: (req, res) => {
@@ -32,7 +31,14 @@ module.exports = {
     },
 
     update: (req, res) => {
-        res.status(200).send([currentGear]);
+        const updateId = +req.params.id;
+        console.log(currentGear)
+        let item = currentGear.find((citem)=>{
+            return citem.id == updateId;
+        })
+        packedGear.push(item);
+        console.log(packedGear)
+        res.status(200).send(packedGear);
     },
 
 
